@@ -141,6 +141,7 @@ vim.opt.rtp:prepend(lazypath)
 --    :Lazy update
 --
 -- NOTE: Here is where you install your plugins.
+--
 require("lazy").setup({
 	-- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
 	"tpope/vim-sleuth", -- Detect tabstop and shiftwidth automatically
@@ -168,6 +169,49 @@ require("lazy").setup({
 				changedelete = { text = "~" },
 			},
 		},
+	},
+
+	{
+		"xiyaowong/transparent.nvim",
+		lazy = false,
+		config = function()
+			require("transparent").setup({
+				groups = {
+					"Normal",
+					"NormalNC",
+					"Comment",
+					"Constant",
+					"Special",
+					"Identifier",
+					"Statement",
+					"PreProc",
+					"Type",
+					"Underlined",
+					"Todo",
+					"String",
+					"Function",
+					"Conditional",
+					"Repeat",
+					"Operator",
+					"Structure",
+					"LineNr",
+					"NonText",
+					"SignColumn",
+					"CursorLine",
+					"CursorLineNr",
+					"StatusLine",
+					"StatusLineNC",
+					"EndOfBuffer",
+				},
+				extra_groups = {
+					"NeoTreeNormal",
+					"NeoTreeNormalNC",
+					"NormalFloat",
+					"NvimTreeNormal",
+				},
+				exclude_groups = {},
+			})
+		end,
 	},
 
 	-- NOTE: Plugins can also be configured to run Lua code when they are loaded.
