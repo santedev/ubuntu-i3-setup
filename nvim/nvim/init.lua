@@ -951,6 +951,22 @@ require("lspconfig").clangd.setup({
 	},
 })
 
+local util = require("lspconfig.util")
+
 require("lspconfig").pylsp.setup({
-	settings = { pylsp = { plugins = { jedi = { environment = "./venv" } } } },
+	on_init = function(client)
+		local root_dir = util.find_git_ancestor(vim.fn.getcwd()) or vim.fn.getcwd()
+		local venv_path = root_dir .. "/.venv"
+
+		if vim.fn.isdirectory(venv_path) == 1 then
+			client.config.cmd_env = {
+				VIRTUAL_ENV = venv_path,
+				PATH = venv_path .. "/bin:" .. os.getenv("PATH"),
+			}
+		end
+	end,
 })
+
+-- require("lspconfig").pylsp.setup({
+-- 	settings = { pylsp = { plugins = { jedi = { environment = "./venv" } } } },
+-- })

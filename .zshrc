@@ -28,6 +28,8 @@ ZSH_THEME="robbyrussell"
 # zstyle ':omz:update' mode auto      # update automatically without asking
 # zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 
+# zstyle ':completion:*:*:descriptions' format '%F{blue}%d%f'
+
 # Uncomment the following line to change how often to auto-update (in days).
 # zstyle ':omz:update' frequency 13
 
@@ -70,7 +72,8 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(zsh-autosuggestions zsh-syntax-highlighting zsh-autocomplete)
+plugins=(git zsh-autosuggestions zsh-syntax-highlighting) # zsh-autocomplete)
+
 
 source $ZSH/oh-my-zsh.sh
 
@@ -102,5 +105,13 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias mk='make -C "$HOME/Documents/code/ros2_ws"'
+alias blender='~/blender-x64/blender'
+alias air='~/go/bin/air'
+
 export VISUAL=nvim
 export EDITOR="$VISUAL"
+
+source /opt/ros/jazzy/setup.zsh 
+source /usr/share/colcon_argcomplete/hook/colcon-argcomplete.zsh 
+source ~/Documents/code/ros2_ws/install/setup.zsh
