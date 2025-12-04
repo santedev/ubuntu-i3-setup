@@ -105,13 +105,17 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias mk='make -C "$HOME/Documents/code/ros2_ws"'
-alias blender='~/blender-x64/blender'
+export BLENDER_4_5='~/blender-4.5/blender -W'
+export BLENDER_4_2='~/blender-4.2/blender -W'
+alias blender-4_5="$BLENDER_4_5"
+alias blender-4_2="$BLENDER_4_2"
+alias blender="$BLENDER_4_5"
 alias air='~/go/bin/air'
+alias conda='~/anaconda3/condabin/conda'
 
 export VISUAL=nvim
 export EDITOR="$VISUAL"
 
-source /opt/ros/jazzy/setup.zsh 
-source /usr/share/colcon_argcomplete/hook/colcon-argcomplete.zsh 
-source ~/Documents/code/ros2_ws/install/setup.zsh
+# source /opt/ros/jazzy/setup.zsh 
+# source /usr/share/colcon_argcomplete/hook/colcon-argcomplete.zsh 
+# source ~/Documents/code/ros2_ws/install/setup.zsh

@@ -3,6 +3,7 @@
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
 set $mod Mod4
+set $alt Mod1
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -17,7 +18,7 @@ exec --no-startup-id picom --config ~/.config/picom/picom.conf -b
 
 # styles
 default_border none
-gaps inner 10
+gaps inner 7
 client.focused          #462691 #462691 #ffffff
 client.unfocused        #222222 #222222 #888888
 client.focused_inactive #444444 #444444 #888888
@@ -176,10 +177,10 @@ mode "resize" {
         # Pressing right will grow the window’s width.
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
-        bindsym h resize shrink width 10 px or 10 ppt
+        bindsym l resize shrink width 10 px or 10 ppt
         bindsym j resize grow height 10 px or 10 ppt
         bindsym k resize shrink height 10 px or 10 ppt
-        bindsym l resize grow width 10 px or 10 ppt
+        bindsym h resize grow width 10 px or 10 ppt
 
         # same bindings, but for the arrow keys
         bindsym Left resize shrink width 10 px or 10 ppt
@@ -197,14 +198,25 @@ bindsym $mod+z exec --no-startup-id sh -c 'sleep 0.2 && xdotool click 1' # Left 
 bindsym $mod+x exec --no-startup-id sh -c 'sleep 0.2 && xdotool click 2' # Middle click
 bindsym $mod+c exec --no-startup-id sh -c 'sleep 0.2 && xdotool click 3' # Right click
 
+bindsym $mod+$alt+l exec --no-startup-id sh -c 'i3lock & sleep 5 && xset dpms force off'
 bindsym $mod+Escape exec --no-startup-id sh -c 'sleep 0.2 && xdotool type --clearmodifiers "~"'
 
-bindsym F7 exec --no-startup-id flameshot gui
-bindsym F8 exec amixer -D pulse sset Master toggle
-bindsym F9 exec amixer -D pulse sset Master 5%-
-bindsym F10 exec amixer -D pulse sset Master 5%+
-bindsym F11 exec xgamma -gamma 1.0
-bindsym F12 exec xgamma -gamma 0.8
+bindsym $mod+Shift+minus move scratchpad
+bindsym $mod+minus scratchpad show
+
+bindsym Shift+F6 exec sh -c 'playerctl --player=spotify volume 0.1-'
+bindsym $alt+F6 exec sh -c 'playerctl --player=spotify position 10-'
+bindsym F6 exec sh -c 'playerctl --player=spotify previous'
+bindsym Shift+F7 exec sh -c 'playerctl --player=spotify shuffle On'
+bindsym $alt+F7 exec sh -c 'playerctl --player=spotify shuffle Off'
+bindsym F7 exec sh -c 'playerctl --player=spotify play-pause'
+bindsym Shift+F8 exec sh -c 'playerctl --player=spotify volume 0.1+'
+bindsym $alt+F8 exec sh -c 'playerctl --player=spotify position 10+'
+bindsym F8 exec sh -c 'playerctl --player=spotify next'
+bindsym F9 exec amixer set Master toggle
+bindsym F10 exec amixer set Master 5%-
+bindsym F11 exec amixer set Master 5%+
+bindsym F12 exec --no-startup-id flameshot gui
 
 bindsym $mod+r mode "resize"
 
@@ -215,6 +227,11 @@ bindsym $mod+r mode "resize"
 # }
 
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
-exec --no-startup-id xrandr --output None-1 --mode 1920x1080 --rate 165
+exec --no-startup-id xrandr --output DP-0 --mode 1920x1080 --rate 165
+exec_always --no-startup-id sh -c "i3-msg 'workspace \"6\"; exec flatpak run com.github.wwmm.easyeffects'"
+
+# exec --no-startup-id sudo xset s off
+# exec --no-startup-id sudo xset -dpms
+
 # exec --no-startup-id xinput set-prop "SYNA3255:00 06CB:7F27 Touchpad" "libinput Tapping Enabled" 1
 
